@@ -24,18 +24,19 @@ router.post("/", function (req, res, next) {
   const myIP = ip.split(",");
 
   /* axios.get(`http://ip-api.com/json/190.120.252.74?fields=country`).then((res) => { */ //esta linea es para
-                                                                                          //probarlo en local
-    axios.get(`http://ip-api.com/json/${myIP[0]}`).then((res) => {
-    
-    const pais = res.data.country;
-console.log("llegue aqui")
-    console.log({ name, email, comment, date, ip, pais });
-  
-    db.insert(name, email, comment, date, ip, pais);
-    console.log("inserte los datos")
-  });
+  //probarlo en local
+  axios
+    .get(`http://ip-api.com/json/${myIP[0]}`)
+    .then((res) => {
+      const pais = res.data.country;
+      console.log("llegue aqui");
+      console.log({ name, email, comment, date, myIP, pais });
+    })
+    .then((res) => {
+      db.insert(name, email, comment, date, myIP, pais);
+    });
 
-/*   res.redirect("/"); */
+    res.redirect("/");
 });
 
 router.get("/contactos", function (req, res, next) {

@@ -21,7 +21,8 @@ router.post("/", function (req, res, next) {
   let date = new Date(); // @todo falta formatear la fecha
   let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress; // @todo falta formatear la ip
 
-  const myIP = ip.split(",");
+  const myIP = ip.split(",")[0];
+  console.log(myIP)
 
   /* axios.get(`http://ip-api.com/json/190.120.252.74?fields=country`).then((res) => { */ //esta linea es para
   //probarlo en local
@@ -30,7 +31,7 @@ router.post("/", function (req, res, next) {
     .then((res) => {
       const pais = res.data.country;
    
-      console.log({ name, email, comment, date, myIP[0], pais });
+      console.log({ name, email, comment, date, myIP, pais });
     })
     .then((res) => {
       db.insert(name, email, comment, date, myIP[0], pais);

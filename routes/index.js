@@ -27,15 +27,15 @@ router.post("/", function (req, res, next) {
   /* axios.get(`http://ip-api.com/json/190.120.252.74?fields=country`).then((res) => { */ //esta linea es para
   //probarlo en local
   axios
-    .get(`http://ip-api.com/json/${myIP[0]}`)
+    .get(`http://ip-api.com/json/${myIP}`)
     .then((res) => {
       const pais = res.data.country;
    
       console.log({ name, email, comment, date, myIP, pais });
+
+      db.insert(name, email, comment, date, myIP, pais);
     })
-    .then((res) => {
-      db.insert(name, email, comment, date, myIP[0], pais);
-    });
+   
 
     res.redirect("/");
 });

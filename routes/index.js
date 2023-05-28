@@ -30,7 +30,7 @@ router.post("/", function (req, res, next) {
     .then((res) => {
       const pais = res.data.country;
    
-      console.log({ name, email, comment, date, myIP, pais });
+      console.log({ name, email, comment, date, myIP[0], pais });
     })
     .then((res) => {
       db.insert(name, email, comment, date, myIP[0], pais);

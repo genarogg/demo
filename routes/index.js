@@ -34,7 +34,7 @@ router.post("/", function (req, res, next) {
     db.insert(name, email, comment, date, ip, pais);
   });
 
-  res.redirect("/");
+/*   res.redirect("/"); */
 });
 
 router.get("/contactos", function (req, res, next) {

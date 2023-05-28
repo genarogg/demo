@@ -29,11 +29,11 @@ router.post("/", function (req, res, next) {
     .get(`http://ip-api.com/json/${myIP[0]}`)
     .then((res) => {
       const pais = res.data.country;
-      console.log("llegue aqui");
+   
       console.log({ name, email, comment, date, myIP, pais });
     })
     .then((res) => {
-      db.insert(name, email, comment, date, myIP, pais);
+      db.insert(name, email, comment, date, myIP[0], pais);
     });
 
     res.redirect("/");

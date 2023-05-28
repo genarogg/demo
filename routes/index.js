@@ -28,10 +28,11 @@ router.post("/", function (req, res, next) {
     axios.get(`http://ip-api.com/json/${myIP[0]}`).then((res) => {
     
     const pais = res.data.country;
-
+console.log("llegue aqui")
     console.log({ name, email, comment, date, ip, pais });
   
     db.insert(name, email, comment, date, ip, pais);
+    console.log("inserte los datos")
   });
 
 /*   res.redirect("/"); */
